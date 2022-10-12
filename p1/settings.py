@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-v8&l*02xrygk%^cu8%x$he%3n!zxdv)ix=$&9%@_&=+n4$-uk0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOST = ['*']
+ALLOWED_HOST = ['*','https://railway.app','https://railway.app/*'.
+                'railway.app*','https://shahidchat.up.railway.app/','shahidchat.up.railway.app']
 
 
 # Application definition
