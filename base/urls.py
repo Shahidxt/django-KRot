@@ -14,5 +14,8 @@ urlpatterns = [
     path('Logout',views.LogoutUser, name='logout'),
     path("delMassage/<str:pk>",views.DeleteMassage,name="delete-massage"),
     path("Profile/<str:pk>", views.UserProfile ,name='profile'),
-    path('settings/',views.settings,name="settings")
+    path('settings/',views.settings,name="settings"),
+    path("topics/",views.TopicsTemp,name='topics'),
+    path('activitys/',views.ActivityTemp,name='activity'),
+     path('createtopic/',views.Topic_Create,name='createtopic'),
 ]

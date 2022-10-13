@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .forms import RoomForm
+from .forms import RoomForm, UserFrom ,TopicForm
 from .models import Rooms, Topic, Message
 from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
@@ -38,13 +38,37 @@ def Login_form(request):
     context = {'page': page}
     return render(request, 'Login.html', context)
 
+def ActivityTemp(request):
+    roommessages = Message.objects.all()
+    print(roommessages)
+    return render(request, 'activity.html' ,{"room_messages": roommessages, })
+
+
+def TopicsTemp(request):
+    q = None
+    try:
+        q = request.GET["q"]
+    except:
+        q = ''
+    topics = Topic.objects.filter(name__icontains=q)
+    rooms = Rooms.objects.filter(topic__name__icontains=q)
+    room_count = rooms.count()
+    return render(request, "topics.html", {"topics": topics})
 
 def settings(request):
-    return render (request,'Setting.html' )
+    form = UserFrom(instance = request.user)
+    context = {"form": form}
+    if request.method == 'POST':
+        form = UserFrom(request.POST,instance = request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    return render (request,'Setting.html',context )
+
+
 
 def registerUser(request):
     form = UserCreationForm()
-    
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         print(request.POST)
@@ -60,6 +84,28 @@ def registerUser(request):
         else:
             messages.add_message(request, messages.INFO, 'Error while Registering...')
     return render(request, 'Login.html', {"form": form})
+
+
+
+
+@login_required(login_url="login")
+def Topic_Create(request):
+    form = TopicForm()
+    if request.method == "POST":
+        form = TopicForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+        else:
+            messages.add_message(request, messages.INFO, 'Error..')
+    return render(request, 'Topic_form.html', {"form": form})
+
+
+
+
+
+
+
 
 
 @login_required(login_url="login")
