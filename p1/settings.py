@@ -27,25 +27,28 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS=['*']
+# ALLOWED_HOST = ['shahidchat.up.railway.app','*','*railway.app','railway.app/*','http://0.0.0.0:8000','0.0.0.0:8000']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'base.apps.BaseConfig',
+    'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic', 
     'rest_framework',
     "corsheaders",
-
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
+"corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,12 +82,17 @@ WSGI_APPLICATION = 'p1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
- #DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': '9q0uhv86vG0BJNxrkISu',
+        'HOST': 'containers-us-west-37.railway.app',
+        'PORT': 5997
+    }
+}
+
 
 
 # Password validation
@@ -121,28 +129,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
-
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
-        'USER': 'root',
-        'PASSWORD': '9q0uhv86vG0BJNxrkISu',
-        'HOST': 'containers-us-west-37.railway.app',
-        'PORT': 5997
-    }
-}
