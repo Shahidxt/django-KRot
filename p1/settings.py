@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v8&l*02xrygk%^cu8%x$he%3n!zxdv)ix=$&9%@_&=+n4$-uk0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS=['*']
@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'p1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': BASE_DIR / 'db.sqlite3',
-     }
- }
+ #DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -140,13 +140,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'railway',
-#        'USER': 'root',
-#        'PASSWORD': '9q0uhv86vG0BJNxrkISu',
-#        'HOST': 'containers-us-west-37.railway.app',
-#        'PORT': 5997
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': '9q0uhv86vG0BJNxrkISu',
+        'HOST': 'containers-us-west-37.railway.app',
+        'PORT': 5997
+    }
+}
