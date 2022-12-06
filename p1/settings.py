@@ -1,3 +1,4 @@
+
 """
 Django settings for p1 project.
 
@@ -82,14 +83,25 @@ WSGI_APPLICATION = 'p1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': '9q0uhv86vG0BJNxrkISu',
+        'HOST': 'containers-us-west-37.railway.app',
+        'PORT': 5997
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 
 
 # Password validation
