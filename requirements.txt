@@ -1,4 +1,6 @@
 ﻿asgiref==3.4.1
+mysqlclient
+default-libmysqlclient-dev
 autopep8==1.5.7
 Django==3.2.7
 django-cors-headers==3.8.0
